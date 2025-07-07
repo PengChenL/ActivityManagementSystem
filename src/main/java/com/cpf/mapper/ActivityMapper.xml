@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.mapper.ActicityMapper">
+    <insert id="add" parameterType="com.cpf.entity.Activity" keyProperty="aid" useGeneratedKeys="true">
+
+    </insert>
+
+
+    <select id="findAll" resultType="com.cpf.entity.Activity">
+        select * from tb_admin;
+    </select>
+
+    <!-- ···················分隔符······················ -->
+    <select id="findActByOrg" resultType="com.cpf.entity.Activity">
+        select * from tb_activity where acorg = #{org};
+    </select>
+
+    <!-- 查询所有活动 -->
+    <select id="findAllActivity" resultType="com.cpf.entity.Activity">
+        select * from tb_activity;
+    </select>
+
+    <!-- 创建活动哦 -->
+    <insert id="addNewActivity" parameterType="com.cpf.entity.Activity" keyProperty="ackey" useGeneratedKeys="true">
+        insert into tb_activity(ackey, actid, acname, actime, participantnum, acorg, acinfo, acstatus, accontact)
+        values
+        (#{ackey}, #{actid}, #{acname},#{actime}, #{participantnum}, #{acorg}, #{acinfo}, #{acstatus}, #{accontact});
+    </insert>
+
+
+
+</mapper>

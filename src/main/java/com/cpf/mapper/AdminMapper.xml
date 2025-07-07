@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.mapper.AdminMapper">
+    <insert id="add" parameterType="com.cpf.entity.Admin" keyProperty="aid" useGeneratedKeys="true">
+        insert into tb_admin(aid, ausername, apwd, aname, atel, aorg)
+        values
+        (#{aid}, #{ausername}, #{apwd}, #{aname}, #{atel}, #{aorg});
+    </insert>
+
+    <delete id="delete" parameterType="com.cpf.entity.Admin">
+        delete from tb_admin where aid = 5;
+    </delete>
+
+    <select id="findAll" resultType="com.cpf.entity.Admin">
+        select * from tb_admin;
+    </select>
+
+    <!-- ···················分隔符······················-->
+    <select id="findAdminByUsername" resultType="com.cpf.entity.Admin">
+        select * from tb_admin where ausername = #{username};
+    </select>
+
+</mapper>

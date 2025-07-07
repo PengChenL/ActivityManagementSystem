@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.mapper.EntryQuestionMapper">
+
+
+    <!-- ···················分隔符······················ -->
+    <select id="findEntryFormByActid" resultType="com.cpf.entity.EntryQuestion">
+        select * from tb_enytryquestion where actid = #{actid} order by qusnum asc;
+    </select>
+
+    <!-- 新增一张报名表 -->
+    <insert id="addEntryForm" parameterType="java.util.List">
+        insert into tb_enytryquestion(eqkey, acty, actid, qusnum, qusid, qusname)
+        values
+        <foreach collection="list" item="tempo" separator=",">
+            (#{tempo.eqkey},#{tempo.acty},#{tempo.actid},#{tempo.qusnum}, #{tempo.qusid},#{tempo.qusname})
+        </foreach>
+    </insert>
+
+</mapper>

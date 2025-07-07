@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.mapper.AnswerMapper">
+
+    <!-- ···················分隔符······················ -->
+    <select id="findAnswersInOneActivity" resultType="com.cpf.entity.Answer">
+        select * from tb_answers where actid = #{actid};
+    </select>
+
+    <!-- 查询这个活动中，有多少个人交了报名表 -->
+    <select id="findParticipantsInOneActivity" resultType="int">
+        select count(distinct submitter) from tb_answers where actid = #{actid};
+    </select>
+
+    <insert id="addSomeOnesRegInfo" parameterType="java.util.List">
+        insert into tb_answers(ansid, actid, qusid, qusname, qusnum, submitter, submitterid, result, submittime)
+        values
+        <foreach collection="list" item="tempo" separator=",">
+            (#{tempo.ansid},#{tempo.actid},#{tempo.qusid},#{tempo.qusname}, #{tempo.qusnum},#{tempo.submitter},
+             #{tempo.submitterid},#{tempo.result},#{tempo.submittime})
+        </foreach>
+    </insert>
+
+
+
+</mapper>
